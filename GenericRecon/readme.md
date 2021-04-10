@@ -1,4 +1,4 @@
-I made a thing and it mostly works.  
+I made a thing and it works.  
   
 Prerequisites:  
 Assumes that it's run in kali  
