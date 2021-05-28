@@ -3,8 +3,8 @@ I need to be able to run this in windows, and may as well also import it to an e
 I need API access and need to remember to not put my personal API key in github of course.  
 
 Here's the pseudocode so far: 
-# place textfile in same dir as executable
-# run executable
+/# place textfile in same dir as executable
+/# run executable
 # executable opens textfile
 # for each line in textfile
 #    query API for line
