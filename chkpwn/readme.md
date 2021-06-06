@@ -17,3 +17,7 @@ return 0
   
 I guess it could possibly output an actual new textfile with the results as well, so you don't have to copy/paste it yourself.  
 I don't know how to do that but i don't know how to do any of this, so...
+
+UPDATE:
+API costs money.  
+So maybe use beautifulsoup to scrape?
