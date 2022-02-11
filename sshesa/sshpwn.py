@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-release = "sshpwn 2.0"
+release = "sshesa 1.0"
 
 # Copyright (c) 2016 Shawn Pang
 # http://shawnpang.com
@@ -49,7 +49,7 @@ def greets():
         greeting = "evening"
 
     print(cs.status, "Good", greeting + ".")
-    print(cs.status, "Welcome back to sshpwn.")
+    print(cs.status, "Welcome back to sshesa.")
     print(cs.status, '{0:%d %B, %Y - %H:%M %p}'.format(now).lstrip("0").replace(" 0", " "), "\n")
 
     input(cs.status + " Press [enter] to initialize ")
