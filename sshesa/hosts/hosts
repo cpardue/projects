@@ -1,8 +1,10 @@
 # Each entry should be in the format of [user]@[host]
 # Comment with hashtags
 
-root@192.168.1.29	# Comment
-root@192.168.1.28
-john@192.168.1.31
-student@192.168.1.31
+#root@192.168.1.29	# Comment
+#root@192.168.1.28
+#john@192.168.1.31
+#student@192.168.1.31
 
+# lab esa1
+chpardue@esa1.hc3185-21.iphmx.com
