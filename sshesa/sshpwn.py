@@ -197,7 +197,6 @@ def gettargetlist():
 
     print(cs.status, "s\t-\tSingle-user mode")
     print(cs.status, "m\t-\tMulti-user mode")
-    print(cs.status, "b\t-\tBrute force mode")
     mode = input("\n" + cs.status + " Select a mode: ")
     targets = []
     
@@ -238,64 +237,7 @@ def gettargetlist():
 
         print("\n" + cs.successlabel, "Multi-user mode done, took " + "{:.2f}".format(time.time() - start) + " seconds")
 
-    elif mode == 'b':
-        # Configurations
-        login = input(cs.status + " Enter username to use (root): ")
-        login = "root" if not login else login
-
-        password = getpass.getpass(cs.status + " Enter password to use (toor): ")
-        password = "toor" if not password else password
-        
-        subnets = input(cs.status + " Enter subnets: (192.168.1) (comma seperate multiple) (dash for range): ")
-        subnets = "192.168.1" if not subnets else subnets
-        subnets = list(subnet.strip() + "." for subnet in subnets.split(","))
-        # Check if a range was entered
-        subnetrange = len(subnets) == 1 and "-" in subnets[0]
-        if subnetrange:
-            octets = subnets[0].split(".")
-            firstoctet = octets[0]
-            secondoctet = octets[1]
-            lastoctet = octets[2]
-            lastoctetrange = lastoctet.split("-")
-            if len(lastoctetrange) != 2:
-                print(cs.error, "Invalid subnet range! Usage: 192.168.6-20")
-                return None
-            rangestart = int(lastoctetrange[0])
-            rangeend = int(lastoctetrange[1]) + 1
-
-        print(cs.status, "Pwning script kiddies...")
-        start = time.time()
-
-        ips = []
-        
-        # Class B Entire Network
-        if subnets[0].count('.') == 2:
-            for subnet in subnets:
-                for i in range(255):
-                    for k in range(255):
-                        ips.append(subnet + str(i) + '.' + str(k))
-        
-        # Class B Network Range
-        elif subnetrange:
-            for i in range(rangestart, rangeend):
-                for k in range(255):
-                    ips.append(firstoctet + '.' + secondoctet + '.' + str(i) + '.' + str(k))
-        
-        # Class C Entire Network
-        elif subnets[0].count('.') == 3:
-            for subnet in subnets:
-                for i in range(255):
-                    ips.append(subnet + str(i))
-        
-        # Class A currently not supported, too big
-        else:
-            print(cs.error, "Invalid ip subnet format!")
-            return None
-
-        targets = list([login, ip, password] for ip in ips)
-        targets = getsshlist(targets, threads=configs["BruteForceThreads"], timeout=configs["BruteForceTimeout"])
-
-        print("\n" + cs.successlabel, "Brute force mode done, took " + "{:.2f}".format(time.time() - start) + " seconds")
+        # Brute Force Mode removed
 
     else:
         print(cs.error, "Unknown mode '" + mode + "'\n")
