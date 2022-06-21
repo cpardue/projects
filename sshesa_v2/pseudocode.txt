@@ -1,0 +1,46 @@
+----------------------------------------------------
+#################
+#  B A N N E R  #
+#    T E X T    #
+#################
+Creator & Version
+Current Page Name
+Path > To > This > Page
+Options: 
+1. X
+2. Y 
+3. Z 
+9. Go Up One Page
+0. Exit
+
+Please select an Option, then press Enter! 
+>_
+
+
+-----------------------------------------------------
+
+Build the splash menu
+
+Predeclare functions here? Each need to header the Current Page Name and Path > To, and need to present their own options from within Function.
+Banner(Build Banner)
+OnStart(Create blank stamped files)
+ViewEditHosts(open/edit files)
+ViewEditCommands(open/edit files)
+RunCommands(Exec commands against hosts)
+Exit(exit)
+
+Run Banner()
+OnStart()
+print Options: 
+switch case the following: 
+1: View/Edit Hosts
+2: View/Edit Commands
+3: Run Commands
+0: Exit
+
+print Please select an Option, then press Enter!
+accept user input
+if 1, goto ViewEditHosts
+else 2, goto ViewEditCommands
+else 3, goto RunCommands
+else 0, goto Exit
