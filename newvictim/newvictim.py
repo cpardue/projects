@@ -39,9 +39,11 @@ os.system("cp ./GenericRecon.py ./"+LabMachineName+"/")  #os.system cp ./Generic
 os.system("touch ./"+LabMachineName+"/Notes.txt")  #os.system touch ./LabMachineName/notes.txt
 os.system("mkdir ./"+LabMachineName+"/Payloads/")  #os.system touch ./LabMachineName/Payloads/
 
-#os.system ping RHOST -t 5
+print("Pinging host 5 times, if it's up then we'll open cherrytree and start GenericRecon...")  
+os.system("ping "+RHOST+" -t 5")  #os.system ping RHOST -t 5
 #if success
-#os.system open cherrytree LabMachineName_Recon.ctb &
+#need subprocess???
+os.system("python2 cherrytree ./"+LabMachineName+"/"+LabMachineName"_Recon.ctb &")  #os.system open cherrytree LabMachineName_Recon.ctb &
 
 #Ask for input: Do you want to run GenericRecon.py? y/n 
 #Input = GenericReconAnswer 
