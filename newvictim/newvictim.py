@@ -11,16 +11,16 @@ import subprocess
 
 
 os.system("clear") # clear the terminal
-print("#########################################################")
-print("# by cpardue circa 2022                  ___            #")
-print("# github.com/cpardue/resources  |\ |    |__     |  |    #")
-print("# chris-pardue.com              | \|    |___    |/\|    #")
-print("#                                                       #")
-print("#                                    __  ___            #")
-print("#                            \  / | /  `  |  |  |\/|    #")
-print("#                             \/  | \__,  |  |  |  |    #")
-print("#                                                       #")
-print("#########################################################")
+print("##########################################################")
+print("# by cpardue circa 2022         //         ___           #")
+print("# github.com/cpardue/resources // |\ |    |__     |  |   #")
+print("# chris-pardue.com            //  | \|    |___    |/\|   #")
+print("# run from Boxes folder      //                          #")
+print("# eat your wheaties         //         __  ___           #")
+print("# wash your hands          //  \  / | /  `  |  |  |\/|   #")
+print("#_________________________//    \/  | \__,  |  |  |  |   #")
+print("#_________________________/                              #")
+print("##########################################################")
 print("\n")
 if not os.geteuid()==0: # check for root
     sys.exit('This script must be run as root!')  #if not root, disclaimer text, exit
