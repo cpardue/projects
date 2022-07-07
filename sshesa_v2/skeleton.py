@@ -32,6 +32,17 @@ chris pardue, sshesa v2
 # Build the splash menu
 # 
 # Predeclare functions here? Each need to header the Current Page Name and Path > To, and need to present their own options from within Function.
+def MainMenu():
+  input("Please select an Option, then press Enter!") #     Please select an Option, then press Enter!
+  while input != 0: #       if user input = 0, Exit()
+    if 1 #       elseif 1
+      ViewEditHosts() #         ViewEditHosts()
+    elif 2 #       elseif 2
+      ViewEditCommands() #         ViewEditCommands()
+    elif 3 #       elseif 3
+      RunCommands() #         RunCommands()
+    elif 9 #       elseif 9
+      Help() #         Help()
 # 
 # OnStart(Create blank stamped files)
 os.system("touch Hosts.txt") #   touch Hosts.txt
@@ -48,19 +59,8 @@ print("2: View/Edit Commands") #     2: View/Edit Commands
 print("3: Run Commands") #     3: Run Commands
 print("9: Help") #     9: Help
 print("0: Exit") #     0: Exit
-#     
-input("Please select an Option, then press Enter!") #     Please select an Option, then press Enter!
-#       if user input = 0, Exit()
-#       elseif 1
-#         ViewEditHosts()
-#       elseif 2
-#         ViewEditCommands()
-#       elseif 3
-#         RunCommands()
-#       elseif 9
-#         Help()
-#       else
-#         MainMenu()
+#  
+MainMenu() #         MainMenu()
 #   
 # ViewEditHosts(open/edit files)
 #   Banner()
