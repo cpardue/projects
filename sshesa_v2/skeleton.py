@@ -1,19 +1,9 @@
 # ----------------------------------------------------
 import os
 import sys
+#
+#
 
-os.system("clear")
-Banner = print("""
-#################################")
-#         _                     #")
-# ___ ___| |__   ___  ___  __ _ #")
-#/ __/ __| '_ \ / _ \/ __|/ _` |#")
-#\__ \__ \ | | |  __/\__ \ (_| |#")
-#|___/___/_| |_|\___||___/\__,_|#")
-#                               #")
-#################################")
-chris pardue, sshesa v2
-""")
 # Current Menu: Name
 # Path > To > This > Page
 # Options: 
@@ -32,7 +22,34 @@ chris pardue, sshesa v2
 # Build the splash menu
 # 
 # Predeclare functions here? Each need to header the Current Page Name and Path > To, and need to present their own options from within Function.
+def Banner():
+  os.system("clear")
+  print("""
+  #################################")
+  #         _                     #")
+  # ___ ___| |__   ___  ___  __ _ #")
+  #/ __/ __| '_ \ / _ \/ __|/ _` |#")
+  #\__ \__ \ | | |  __/\__ \ (_| |#")
+  #|___/___/_| |_|\___||___/\__,_|#")
+  #                               #")
+  #################################")
+  chris pardue, sshesa v2
+  """)
+  return
+#
+def OnStart(): # OnStart(Create blank stamped files)
+  os.system("touch Hosts.txt") #   touch Hosts.txt
+  os.system("touch Commands.txt") #   touch Commands.txt
+  return
+#
 def MainMenu():
+  print("Options:") #     Options: 
+  print("1: View/Edit Hosts") #     1: View/Edit Hosts
+  print("2: View/Edit Commands") #     2: View/Edit Commands
+  print("3: Run Commands") #     3: Run Commands
+  print("9: Help") #     9: Help
+  print("0: Exit") #     0: Exit
+  print("")
   input("Please select an Option, then press Enter!") #     Please select an Option, then press Enter!
   while input != 0: #       if user input = 0, Exit()
     if 1 #       elseif 1
@@ -43,24 +60,16 @@ def MainMenu():
       RunCommands() #         RunCommands()
     elif 9 #       elseif 9
       Help() #         Help()
+  return
 # 
-# OnStart(Create blank stamped files)
-os.system("touch Hosts.txt") #   touch Hosts.txt
-os.system("touch Commands.txt") #   touch Commands.txt
 #   
-# MainMenu()
-Banner #   Banner()
+Banner() #   Banner()
+ONStart() # OnStart()
+MainMenu() # MainMenu()
 #   Current Menu: Main Menu
 #   Main Menu
 #   print menu
-print("Options:") #     Options: 
-print("1: View/Edit Hosts") #     1: View/Edit Hosts
-print("2: View/Edit Commands") #     2: View/Edit Commands
-print("3: Run Commands") #     3: Run Commands
-print("9: Help") #     9: Help
-print("0: Exit") #     0: Exit
 #  
-MainMenu() #         MainMenu()
 #   
 # ViewEditHosts(open/edit files)
 #   Banner()
