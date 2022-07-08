@@ -43,6 +43,8 @@ def OnStart(): # OnStart(Create blank stamped files)
   return
 #
 def MainMenu():
+  print("Current Menu: Main Menu") 
+  print("Main Menu") 
   print("Options:") #     Options: 
   print("1: View/Edit Hosts") #     1: View/Edit Hosts
   print("2: View/Edit Commands") #     2: View/Edit Commands
@@ -62,47 +64,33 @@ def MainMenu():
       Help() #         Help()
   return
 # 
-#   
-Banner() #   Banner()
-ONStart() # OnStart()
-MainMenu() # MainMenu()
-#   Current Menu: Main Menu
-#   Main Menu
-#   print menu
-#  
-#   
-# ViewEditHosts(open/edit files)
-#   Banner()
-#   print menu
-#     Current Menu: View/Edit Hosts
-#     Main Menu > View/Edit Hosts
-#     Options: 
-#     1: View Hosts
-#     2: Add Hosts
-#     3: Remove All Hosts
-#     9: Go Back
-#     0: Exit Application
-#     
-#     Please select an Option, then press Enter! 
-#     ask for user input (validate for above #'s only)
-#       if user input = 0, Exit()
-#       elseif 1
-#         Banner()
-#         print Hosts.txt
-#         print Press Any Key to Return
-#           upon keypress, ViewEditHosts()
-#       elseif 2
-#         Banner()
-#         while input >= 9
-#           print Enter a single hostname to add, then press Enter! 
-#           print Enter 9 to save and return to the previous menu. 
-#            concat input to Hosts.txt
-#             pop open, write, pop closed
-#         ViewEditHosts()
-#       elseif 3
-#         Banner()
-#         while input >= 2
-#         print Are you sure you want to delete hosts from the list? 
+def ViewEditHosts() # ViewEditHosts(open/edit files)
+  Banner()#   Banner()
+  print("Current Menu: View/Edit Hosts") #     Current Menu: View/Edit Hosts
+  print("Main Menu > View/Edit Hosts") #     Main Menu > View/Edit Hosts
+  print("Options:") #     Options: 
+  print("1: View Hosts") #     1: View Hosts
+  print("2: Add Hosts") #     2: Add Hosts
+  print("3: Remove All Hosts") #     3: Remove All Hosts
+  print("9: Go Back") #     9: Go Back
+  print("0: Exit Application") #     0: Exit Application
+  input("Please select an Option, then press Enter!") #     ask for user input (validate for above #'s only) 
+  while input != 0: #       if user input = 0, Exit()
+    if 1 #       elseif 1
+      Banner() #         Banner()
+      os.system("cat Hosts.txt") #         print Hosts.txt
+      input("Press Any Key to Return") #         print Press Any Key to Return
+      return #           upon keypress, ViewEditHosts()
+    elif 2 #       elseif 2
+      Banner() #         Banner()
+      print("Enter a Hostname then Press Enter")
+      with open(Hosts.txt, "w") as f: #             pop open, write, pop closed
+        f.write(input()) #           print Enter a single hostname to add, then press Enter! 
+      return
+    elif 3 #       elseif 3
+      Banner() #         Banner()
+        while YesTmHosts != "n": #         while input >= 2
+      print("Are you sure you want to delete hosts from Hosts.txt? [Y/n]") #         print Are you sure you want to delete hosts from the list? 
 #         print 1: Yes
 #         print 2: No, Go Back
 #         ask for input
@@ -114,6 +102,16 @@ MainMenu() # MainMenu()
 #         MainMenu()
 #       else 
 #         ViewEditHosts()
+#   
+Banner() #   Banner()
+ONStart() # OnStart()
+MainMenu() # MainMenu()
+#   Current Menu: Main Menu
+#   Main Menu
+#   print menu
+#  
+#   
+
 # 
 # ViewEditCommands(open/edit files)
 #   Banner()
