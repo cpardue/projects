@@ -23,7 +23,7 @@ import sys
 # 
 # Predeclare functions here? Each need to header the Current Page Name and Path > To, and need to present their own options from within Function.
 def Banner():
-  os.system("clear")
+  os.system("echo clear")
   print("""
   #################################")
   #         _                     #")
@@ -38,8 +38,8 @@ def Banner():
   return
 #
 def OnStart(): # OnStart(Create blank stamped files)
-  os.system("touch Hosts.txt") #   touch Hosts.txt
-  os.system("touch Commands.txt") #   touch Commands.txt
+  os.system("echo touch ./Hosts.txt") #   touch Hosts.txt
+  os.system("echo touch ./Commands.txt") #   touch Commands.txt
   return
 #
 def MainMenu():
@@ -74,37 +74,41 @@ def ViewEditHosts() # ViewEditHosts(open/edit files)
   print("3: Remove All Hosts") #     3: Remove All Hosts
   print("9: Go Back") #     9: Go Back
   print("0: Exit Application") #     0: Exit Application
-  input("Please select an Option, then press Enter!") #     ask for user input (validate for above #'s only) 
+  input("Please select an Option, then press Enter: ") #     ask for user input (validate for above #'s only) 
   while input != 0: #       if user input = 0, Exit()
     if 1 #       elseif 1
       Banner() #         Banner()
-      os.system("cat Hosts.txt") #         print Hosts.txt
+      print("Current Menu: View Hosts")
+      print("Main Menu > View/Edit Hosts > View Hosts")
+      os.system("echo cat Hosts.txt") #         print Hosts.txt
       input("Press Any Key to Return") #         print Press Any Key to Return
       return #           upon keypress, ViewEditHosts()
     elif 2 #       elseif 2
       Banner() #         Banner()
       print("Enter a Hostname then Press Enter")
-      with open(Hosts.txt, "w") as f: #             pop open, write, pop closed
-        f.write(input()) #           print Enter a single hostname to add, then press Enter! 
+      #with open(Hosts.txt, "w") as f: #             pop open, write, pop closed
+        #f.write(input()) #           print Enter a single hostname to add, then press Enter! 
       return
     elif 3 #       elseif 3
       Banner() #         Banner()
-        while YesTmHosts != "n": #         while input >= 2
-      print("Are you sure you want to delete hosts from Hosts.txt? [Y/n]") #         print Are you sure you want to delete hosts from the list? 
-#         print 1: Yes
-#         print 2: No, Go Back
-#         ask for input
-#           if input = 1
-#             del Hosts.txt
-#             touch Hosts.txt
-#         ViewEditHosts()
-#       elseif 9
-#         MainMenu()
-#       else 
-#         ViewEditHosts()
-#   
+        while input != 2: #         while input >= 2
+          print("Current Menu: Remove All Hosts") #     Current Menu: View/Edit Hosts
+          print("Main Menu > View/Edit Hosts > Remove All Hosts") #     Main Menu > View/Edit Hosts
+          print("Options:") #     Options: 
+          print("1: Remove All Hosts From List") #         print 1: Yes
+          print("2: Go Back") #         print 2: No, Go Back
+          input("Please select an Option, then press Enter: ") #         ask for input
+          if input = 1 #           if input = 1
+            os.system("echo rm ./Hosts.txt && touch ./Hosts.txt") #             del Hosts.txt && touch Hosts.txt        
+          else
+            return #         ViewEditHosts()
+    elif 9 #       elseif 9
+      MainMenu() #         MainMenu()
+    else #       else 
+      ViewEditHosts() #         ViewEditHosts()
+#  
+OnStart() # OnStart()
 Banner() #   Banner()
-ONStart() # OnStart()
 MainMenu() # MainMenu()
 #   Current Menu: Main Menu
 #   Main Menu
