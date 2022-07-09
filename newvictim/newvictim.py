@@ -27,26 +27,30 @@ if not os.geteuid()==0: # check for root
 LabMachineName = input("What is the new lab's name :")  #Ask for input: What is the new lab's name? Input = LabMachineName
 RHOST = input("What is the new lab's IP address :")  #Ask for input: What is the new lab's IP address? Input = RHOST
 
-os.system("mkdir ./"+LabMachineName+"/")  #os.system touch ./LabMachineName
+os.system("mkdir ./"+LabMachineName+"/ && echo 'Created new directory for "+LabMachineName+"...'")  #os.system touch ./LabMachineName
 #if CTF_NOTES.ctb exists,
-os.system("cp ./CTF_NOTES.ctb ./"+LabMachineName+"/"+LabMachineName+"_Recon.ctb")  #os.system cp ./CTF_NOTES.ctb ./LabMachineName/LabMachineName_Recon.ctb
 #else wget from github/cpardue/resources
-os.system("cp ./CTF_NOTES.ctb ./"+LabMachineName+"/"+LabMachineName+"_Recon.ctb")  #os.system cp ./CTF_NOTES.ctb ./LabMachineName/LabMachineName_Recon.ctb
+os.system("cp ./CTF_NOTES.ctb ./"+LabMachineName+"/"+LabMachineName+"_Recon.ctb && echo 'Copied new cherrytree template to directory...'")  #os.system cp ./CTF_NOTES.ctb ./LabMachineName/LabMachineName_Recon.ctb
 #if GenericRecon.py exists,
-os.system("cp ./GenericRecon.py ./"+LabMachineName+"/")  #os.system cp ./GenericRecon.py ./LabMachineName/
+#os.system("cp ./GenericRecon.py ./"+LabMachineName+"/")  #os.system cp ./GenericRecon.py ./LabMachineName/
 #else wget from github/cpardue/resources
-os.system("cp ./GenericRecon.py ./"+LabMachineName+"/")  #os.system cp ./GenericRecon.py ./LabMachineName/
-os.system("touch ./"+LabMachineName+"/Notes.txt")  #os.system touch ./LabMachineName/notes.txt
-os.system("mkdir ./"+LabMachineName+"/Payloads/")  #os.system touch ./LabMachineName/Payloads/
+os.system("cp ./GenericRecon.py ./"+LabMachineName+"/ && echo 'Copied new enericRecon.py to directory...'")  #os.system cp ./GenericRecon.py ./LabMachineName/
+os.system("touch ./"+LabMachineName+"/Notes.txt && echo 'Created new notes.txt in directory...'")  #os.system touch ./LabMachineName/notes.txt
+os.system("mkdir ./"+LabMachineName+"/Payloads/ && echo 'Created new Payloads folder in directory...'")  #os.system touch ./LabMachineName/Payloads/
 
-print("Pinging host 5 times, if it's up then we'll open cherrytree and start GenericRecon...")  
-os.system("ping "+RHOST+" -t 5")  #os.system ping RHOST -t 5
-#if success
+#print("Pinging host, if it's up then we'll open cherrytree and start GenericRecon...")  
+#response = os.system("ping -c 1 " + RHOST) #os.system ping RHOST -t 5
+#if response == 0:
+#    print hostname, 'is up! Scanning!' #if success
+#else:
+#    print hostname, 'is down! Not scanning!'   
 #need subprocess???
-os.system("python2 cherrytree ./"+LabMachineName+"/"+LabMachineName"_Recon.ctb &")  #os.system open cherrytree LabMachineName_Recon.ctb &
+os.system("echo 'Attempting to open cherrytree template bia cli...' && python2 cherrytree ./"+LabMachineName+"/"+LabMachineName"_Recon.ctb &")  #os.system open cherrytree LabMachineName_Recon.ctb &
 
 #Ask for input: Do you want to run GenericRecon.py? y/n 
 #Input = GenericReconAnswer 
 #if GenericReconAnswer, 
 #os.system run GenericRecon.py RHOST
-#else exit
+print()
+print("Script Complete! Exiting...") #else exit
+
