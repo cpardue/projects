@@ -81,4 +81,4 @@ os.system("echo 'Attempting to open cherrytree template bia cli...' && python2 c
 #os.system run GenericRecon.py RHOST
 print()
 print("Script Complete! Exiting...") #else exit
-
+sys.exit() #just testing this out
