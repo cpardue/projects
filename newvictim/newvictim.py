@@ -9,6 +9,32 @@ import sys
 import subprocess
 
 
+# command line arguments test section START
+# from https://www.geeksforgeeks.org/command-line-arguments-in-python/#sys
+import getopt
+# Remove 1st argument from the
+# list of command line arguments
+argumentList = sys.argv[1:]
+# Options
+options = "nah:"
+# Long options
+long_options = ["Name", "Address", "Help"]
+try:
+    # Parsing argument
+    arguments, values = getopt.getopt(argumentList, options, long_options)
+    # checking each argument
+    for currentArgument, currentValue in arguments:
+        if currentArgument in ("-n", "--Name"):
+            print ("Displaying Name")
+        elif currentArgument in ("-a", "--Address"):
+            print ("Displaying Address")
+        elif currentArgument in ("-h", "--Help"):
+            print ("Displaying Help")
+except getopt.error as err:
+    # output error, and return with an error code
+    print (str(err))
+# command line arguments test section END
+
 
 os.system("clear") # clear the terminal
 print("##########################################################")
