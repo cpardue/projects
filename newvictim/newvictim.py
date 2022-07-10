@@ -29,9 +29,11 @@ try:
         elif currentArgument in ("-a", "--Address"):
             print ("Displaying Address")
         elif currentArgument in ("-h", "--Help"):
-            print ("Displaying Help")
+            print("""newvictim.py Usage:/nnewvictim.py -n <MachineName> -a <IP Address> [--help]/n""")
+            sys.exit()
 except getopt.error as err:
     # output error, and return with an error code
+    print("Forgot how to use it? Try newvictim.py --help")
     print (str(err))
 # command line arguments test section END
 
