@@ -6,7 +6,6 @@
 
 import os
 import sys
-import subprocess
 
 
 # command line arguments test section START
