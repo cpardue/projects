@@ -15,20 +15,18 @@ import getopt
 # list of command line arguments
 argumentList = sys.argv[1:]
 # Options
-options = "nah:"
+options = "nh:"
 # Long options
-long_options = ["Name", "Address", "Help"]
+long_options = ["Name", "Help"]
 try:
     # Parsing argument
     arguments, values = getopt.getopt(argumentList, options, long_options)
     # checking each argument
     for currentArgument, currentValue in arguments:
         if currentArgument in ("-n", "--Name"):
-            print ("Displaying Name")
-        elif currentArgument in ("-a", "--Address"):
-            print ("Displaying Address")
+            LabMachineName = input("")
         elif currentArgument in ("-h", "--Help"):
-            print("""newvictim.py Usage:/nnewvictim.py -n <MachineName> -a <IP Address> [--help]/n""")
+            print("""newvictim.py Usage:/nnewvictim.py -n <MachineName>/n!!!Run this from your ./Boxes/ directory!!!""")
             sys.exit()
 except getopt.error as err:
     # output error, and return with an error code
@@ -49,19 +47,19 @@ print("#_________________________//    \/  | \__,  |  |  |  |   #")
 print("#_________________________/                              #")
 print("##########################################################")
 print("\n")
-if not os.geteuid()==0: # check for root
+# if not os.geteuid()==0: # check for root
     sys.exit('This script must be run as root!')  #if not root, disclaimer text, exit
-LabMachineName = input("What is the new lab's name :")  #Ask for input: What is the new lab's name? Input = LabMachineName
-RHOST = input("What is the new lab's IP address :")  #Ask for input: What is the new lab's IP address? Input = RHOST
+# LabMachineName = input("What is the new lab's name :")  #Ask for input: What is the new lab's name? Input = LabMachineName
+# RHOST = input("What is the new lab's IP address :")  #Ask for input: What is the new lab's IP address? Input = RHOST
 
 os.system("mkdir ./"+LabMachineName+"/ && echo 'Created new directory for "+LabMachineName+"...'")  #os.system touch ./LabMachineName
 #if CTF_NOTES.ctb exists,
 #else wget from github/cpardue/resources
-os.system("cp ./CTF_NOTES.ctb ./"+LabMachineName+"/"+LabMachineName+"_Recon.ctb && echo 'Copied new cherrytree template to directory...'")  #os.system cp ./CTF_NOTES.ctb ./LabMachineName/LabMachineName_Recon.ctb
+os.system("cp ./CTF_Template.ctb ./"+LabMachineName+"/"+LabMachineName+"_Recon.ctb && echo 'Copied new cherrytree template to directory...'")  #os.system cp ./CTF_NOTES.ctb ./LabMachineName/LabMachineName_Recon.ctb
 #if GenericRecon.py exists,
 #os.system("cp ./GenericRecon.py ./"+LabMachineName+"/")  #os.system cp ./GenericRecon.py ./LabMachineName/
 #else wget from github/cpardue/resources
-os.system("cp ./GenericRecon.py ./"+LabMachineName+"/ && echo 'Copied new enericRecon.py to directory...'")  #os.system cp ./GenericRecon.py ./LabMachineName/
+os.system("cp ./GenericRecon.py ./"+LabMachineName+"/ && echo 'Copied new GenericRecon.py to directory...'")  #os.system cp ./GenericRecon.py ./LabMachineName/
 os.system("touch ./"+LabMachineName+"/Notes.txt && echo 'Created new notes.txt in directory...'")  #os.system touch ./LabMachineName/notes.txt
 os.system("mkdir ./"+LabMachineName+"/Payloads/ && echo 'Created new Payloads folder in directory...'")  #os.system touch ./LabMachineName/Payloads/
 
@@ -72,7 +70,7 @@ os.system("mkdir ./"+LabMachineName+"/Payloads/ && echo 'Created new Payloads fo
 #else:
 #    print hostname, 'is down! Not scanning!'   
 #need subprocess???
-os.system("echo 'Attempting to open cherrytree template bia cli...' && python2 cherrytree ./"+LabMachineName+"/"+LabMachineName"_Recon.ctb &")  #os.system open cherrytree LabMachineName_Recon.ctb &
+# os.system("echo 'Attempting to open cherrytree template bia cli...' && python2 cherrytree ./"+LabMachineName+"/"+LabMachineName"_Recon.ctb &")  #os.system open cherrytree LabMachineName_Recon.ctb &
 
 #Ask for input: Do you want to run GenericRecon.py? y/n 
 #Input = GenericReconAnswer 
