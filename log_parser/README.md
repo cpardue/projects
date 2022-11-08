@@ -10,3 +10,5 @@ Asks:
 * Standalone executable for Windows platform
 
 Done! 
+
+sha256 of log_parser.exe: 57E07AA408BF99409BB1C27BD9D63238DFB10489C00C449580E322EFFFFECE1C
