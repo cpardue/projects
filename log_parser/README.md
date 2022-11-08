@@ -1,5 +1,5 @@
 Log Parser GUI written in Python3. 
-Not final yet.  
+The log_parser.exe is final form. 
 
 Asks: 
 * GUI
@@ -9,4 +9,4 @@ Asks:
 * Dark mode preferable
 * Standalone executable for Windows platform
 
-Most of it's done. Will repackage once complete. 
+Done! 
