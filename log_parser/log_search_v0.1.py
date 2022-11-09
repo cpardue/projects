@@ -4,7 +4,6 @@ from tkinter import Text
 from tkinter.filedialog import askopenfile, asksaveasfile
 
 
-
 # start tkinter window loop
 root = tk.Tk()
 root.resizable(True, True)
