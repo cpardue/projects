@@ -1,18 +1,20 @@
 ### MX Recon
 
-**TL;DR**
+**TL;DR**  
 I often do an nslookup and check MXToolbox for some info.  
 So why not make a python script amiright  
 ______________________________________________________________
-**Prereq's**
-Python3
+**Prereq's**  
+Python3  
 dnspython python package (pip install dnspython)
 ______________________________________________________________
-**Details**
+**Details**  
+Run it, enter a domain into the prompt, see a check. 
 mx_recon.py takes a domain name, checks for an MX record, and if found checks for SPF and DMARC records, printing matches.  
 I plan to add more functionality later.  
+Just wrote this up on a day off so that I have a skeleton to work with.  
 ______________________________________________________________
-**Some functionality ideas:  **
+**Some functionality ideas:  **  
 * check MX Hostnames against known mail providers (Google, Cisco, Outlook, AWS, etc)  
 * check SPF hostnames against MX hostnames to gauge SPF health  
 * check SPF final action to gauge SPF health  
