@@ -14,7 +14,7 @@ mx_recon.py takes a domain name, checks for an MX record, and if found checks fo
 I plan to add more functionality later.  
 Just wrote this up on a day off so that I have a skeleton to work with.  
 ______________________________________________________________
-**Some functionality ideas:  **  
+**Some functionality ideas:**  
 * check MX Hostnames against known mail providers (Google, Cisco, Outlook, AWS, etc)  
 * check SPF hostnames against MX hostnames to gauge SPF health  
 * check SPF final action to gauge SPF health  
