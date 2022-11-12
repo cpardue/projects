@@ -21,3 +21,7 @@ ______________________________________________________________
 * check DMARC percentage and final action to gauge DMARC health  
 * save results to a file  
 * read csv list of domains, output multiple results files
+
+<p align=center>
+<a href="https://www.buymeacoffee.com/cpardue0" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+</p>
