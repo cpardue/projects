@@ -1,5 +1,6 @@
 Log Search GUI tool written in Python3. 
 
+**Update: dev friend of mine mentioned that i can self sign the binary, and use an installer to install cert on user machines. Have not yet attempted but now there is an option!**
 
 Asks: 
 * GUI - done
