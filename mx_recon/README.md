@@ -8,7 +8,7 @@ ______________________________________________________________
 Python3  
 dnspython python package (pip install dnspython)
 ______________________________________________________________
-**Progress Report**
+**Progress Report**  
 Currently accepts input for a domain name, runs MX, SPF, DMARC checks and writes to a file named <domain>.txt, including minor details such as hardfail, softfail, p=none, etc. Still working on functionality while bored. Works right now, although it needs cleanup of now-useless print statements. 
 Give it a try. If you like it, steal it and make it your own. 
 ______________________________________________________________
