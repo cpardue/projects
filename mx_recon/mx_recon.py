@@ -76,6 +76,7 @@ with open(outputfile, "w") as opf:
 
     except:
         print("# [FAIL] DMARC record not found.")
+        opf.write("# [FAIL] DMARC record not found.\n")
         pass
 opf.close()
 #input("\nPress enter to exit ")
