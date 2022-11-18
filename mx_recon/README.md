@@ -8,19 +8,19 @@ ______________________________________________________________
 Python3  
 dnspython python package (pip install dnspython)
 ______________________________________________________________
-**Details**  
-Run it, enter a domain into the prompt, see a check. 
-mx_recon.py takes a domain name, checks for an MX record, and if found checks for SPF and DMARC records, printing matches.  
-I plan to add more functionality later.  
-Just wrote this up on a day off so that I have a skeleton to work with.  
+**Progress Report**
+Currently accepts input for a domain name, runs MX, SPF, DMARC checks and writes to a file named <domain>.txt, including minor details such as hardfail, softfail, p=none, etc. Still working on functionality while bored. Works right now, although it needs cleanup of now-useless print statements. 
+Give it a try. If you like it, steal it and make it your own. 
 ______________________________________________________________
 **Some functionality ideas:**  
-* check MX Hostnames against known mail providers (Google, Cisco, Outlook, AWS, etc)  
-* check SPF hostnames against MX hostnames to gauge SPF health  
-* check SPF final action to gauge SPF health  
-* check DMARC percentage and final action to gauge DMARC health  
-* save results to a file  
-* read csv list of domains, output multiple results files
+* check MX Hostnames against known mail providers (Google, Cisco, Outlook, AWS, etc) - Pending  
+* check SPF hostnames against MX hostnames to gauge SPF health - Pending  
+* check SPF final action to gauge SPF health - DONE  
+* check DMARC percentage and final action to gauge DMARC health - In Progress  
+* save results to a file - DONE  
+* read csv list of domains, output multiple results files - Pending  
+
+
 
 <p align=center>
 <a href="https://www.buymeacoffee.com/cpardue0" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
