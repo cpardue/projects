@@ -19,6 +19,7 @@ ______________________________________________________________
 * check DMARC percentage and final action to gauge DMARC health - In Progress  
 * save results to a file - DONE  
 * read csv list of domains, output multiple results files - Pending  
+* argparse for accepting cli arguments - Pending  
 
 
 
