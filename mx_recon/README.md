@@ -13,11 +13,11 @@ Currently accepts input for a domain name, runs MX, SPF, DMARC checks and writes
 Give it a try. If you like it, steal it and make it your own. 
 ______________________________________________________________
 **Some functionality ideas:**  
-* check MX Hostnames against known mail providers (Google, Cisco, Outlook, AWS, etc) - Pending  
-* check SPF hostnames against MX hostnames to gauge SPF health - Pending  
 * check SPF final action to gauge SPF health - DONE  
-* check DMARC percentage and final action to gauge DMARC health - In Progress  
 * save results to a file - DONE  
+* check DMARC percentage and policy action to gauge DMARC health - In Progress  
+* check MX Hostnames against known mail providers (Google, Cisco, Outlook, Proofpoint, etc) - Pending  
+* check SPF hostnames against MX hostnames to gauge SPF health - Pending  
 * read csv list of domains, output multiple results files - Pending  
 * argparse for accepting cli arguments - Pending  
 
