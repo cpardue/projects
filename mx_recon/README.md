@@ -1,4 +1,8 @@
 ### MX Recon
+Progress Report:  
+Rewrote MX and SPF parsing with regex for accuracy. 
+Added a small digest of common MX records for identifying cloud email gateways. 
+Removed file writing temporarily, will add it back when I have more friends. 
 
 **TL;DR**  
 I often do an nslookup and check MXToolbox for some info.  
@@ -14,9 +18,9 @@ Give it a try. If you like it, steal it and make it your own.
 ______________________________________________________________
 **Some functionality ideas:**  
 * check SPF final action to gauge SPF health - DONE  
-* save results to a file - DONE  
-* check DMARC percentage and policy action to gauge DMARC health - In Progress  
-* check MX Hostnames against known mail providers (Google, Cisco, Outlook, Proofpoint, etc) - Pending  
+* check DMARC percentage and policy action to gauge DMARC health - DONE 
+* check MX Hostnames against known mail providers (Google, Cisco, Outlook, Proofpoint, etc) - In Progress  
+* save results to a file - In Progress  
 * check SPF hostnames against MX hostnames to gauge SPF health - Pending  
 * read csv list of domains, output multiple results files - Pending  
 * argparse for accepting cli arguments - Pending  
