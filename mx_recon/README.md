@@ -1,8 +1,4 @@
 ### MX Recon
-Progress Report:  
-Rewrote MX and SPF parsing with regex for accuracy. 
-Added a small digest of common MX records for identifying cloud email gateways. 
-Removed file writing temporarily, will add it back when I have more friends. 
 
 **TL;DR**  
 I often do an nslookup and check MXToolbox for some info.  
@@ -13,7 +9,10 @@ Python3
 dnspython python package (pip install dnspython)
 ______________________________________________________________
 **Progress Report**  
-Currently accepts input for a domain name, runs MX, SPF, DMARC checks and writes to a file named <domain>.txt, including minor details such as hardfail, softfail, p=none, etc. Still working on functionality while bored. Works right now, although it needs cleanup of now-useless print statements. 
+Currently accepts input for a domain name, runs MX, SPF, DMARC checks and writes to a file named <domain>.txt, including minor details such as hardfail, softfail, p=none, etc. Still working on functionality while bored.<br>
+  Removed writing contents to file, need to clean up new functionality first.<br>
+  Added a mini digest of cloud email gateway hosts for mx host identification.<br>
+  Added SPF details parsing. Needs cleanup for readability.<br>
 Give it a try. If you like it, steal it and make it your own. 
 ______________________________________________________________
 **Some functionality ideas:**  
