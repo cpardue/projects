@@ -18,9 +18,9 @@ ______________________________________________________________
 **Some functionality ideas:**  
 * check SPF final action to gauge SPF health - DONE  
 * check DMARC percentage and policy action to gauge DMARC health - DONE 
-* check MX Hostnames against known mail providers (Google, Cisco, Outlook, Proofpoint, etc) - In Progress  
-* save results to a file - In Progress  
-* check SPF hostnames against MX hostnames to gauge SPF health - Pending  
+* check MX Hostnames against known mail providers (Google, Cisco, Outlook, Proofpoint, etc) - DONE  
+* save results to a file - DONE  
+* check SPF hostnames against MX hostnames to gauge SPF health - Abandoned  
 * read csv list of domains, output multiple results files - Pending  
 * argparse for accepting cli arguments - Pending  
 
