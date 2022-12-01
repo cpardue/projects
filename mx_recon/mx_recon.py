@@ -1,70 +1,70 @@
-""" version 0.1.5, by Chris Pardue, see chris-pardue.com
+""" version 0.1.6, by Chris Pardue, see chris-pardue.com
 or github.com/cpardue for more sketchy python scripts"""
 import dns.resolver
 import re
 
 domain = input("Enter a Domain to check: ")
 #domain = "test.com"
+# name the output file
 outputfile = domain + ".txt"
+# create & open the output file and...
 with open(outputfile, "w") as opf:
+    # try looking for MX records
     try:
         test_mx = dns.resolver.resolve(domain, "MX")
-        print("########################################")
-        print("# MX Records Found:\n# \tPriority\t|\tHostname\t|\tSuspected Service")
-        #opf.write("########################################\n")
-        #opf.write("# MX Records Found:\n# \tPriority\tHostname\n")
+        opf.write("###########################################################################################\n")
+        opf.write("# MX Records Found:\n# \tPriority\t|\tHostname\t|\tSuspected Service\n")
+        # look inside results, loop through w/regex to parse it out
         for mx_data in test_mx:
             mx_results = str(mx_data)
-            #opf.write("# \t" + mx_results + "\n")
             # parse out suspected email gateway
             rmx = re.findall(r"(?:[a-zA-Z0-9_-](?:[a-zA-Z0-9_-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9_-]*["
                              r"a-zA-Z0-9])?", mx_results)
             rmxval = re.findall(r"\.[a-zA-Z0-9]*\.[comi]{2,3}", str(rmx))
             if rmxval == ['.iphmx.com']:
-                print("# \t " + mx_results + "\tCisco Secure Email Host")
+                opf.write("# \t " + mx_results + "\tCisco Secure Email Host\n")
             elif rmxval == ['.mimecast.com']:
-                print("# \t " + mx_results + "\tMimecast Cloud Email Security Host")
+                opf.write("# \t " + mx_results + "\tMimecast Cloud Email Security Host\n")
             elif rmxval == ['.zixmail.net']:
-                print("# \t " + mx_results + "\tPossibly Zixmail Host")
+                opf.write("# \t " + mx_results + "\tPossibly Zixmail Host\n")
             elif rmxval == ['.google.com']:
-                print("# \t " + mx_results + "\tGoogle Workspaces Host")
+                opf.write("# \t " + mx_results + "\tGoogle Workspaces Host\n")
             elif rmxval == ['.outlook.com']:
-                print("# \t " + mx_results + "\tPossibly O365 Host")
+                opf.write("# \t " + mx_results + "\tPossibly O365 Host\n")
             elif rmxval == ['.onmicrosoft.com']:
-                print("# \t " + mx_results + "\tPossibly O365 Host")
+                opf.write("# \t " + mx_results + "\tPossibly O365 Host\n")
             elif rmxval == ['.zoho.com']:
-                print("# \t " + mx_results + "\tZoho Host")
+                opf.write("# \t " + mx_results + "\tZoho Host\n")
             elif rmxval == ['.messagingengine.com']:
-                print("# \t " + mx_results + "\tFastmail Host")
+                opf.write("# \t " + mx_results + "\tFastmail Host\n")
             elif rmxval == ['.amazonaws.com']:
-                print("# \t " + mx_results + "\tAmazon WorkMail Host")
+                opf.write("# \t " + mx_results + "\tAmazon WorkMail Host\n")
             elif rmxval == ['.emailsvr.com']:
-                print("# \t " + mx_results + "\tRackspace Cloud Office Host")
+                opf.write("# \t " + mx_results + "\tRackspace Cloud Office Host\n")
             elif rmxval == ['.spamtitan.com']:
-                print("# \t " + mx_results + "\tSpamTitan Cloud Email Security Host")
+                opf.write("# \t " + mx_results + "\tSpamTitan Cloud Email Security Host\n")
             elif rmxval == ['.onice.io']:
-                print("# \t " + mx_results + "\tIceWarp Cloud Email Host")
+                opf.write("# \t " + mx_results + "\tIceWarp Cloud Email Host\n")
             elif rmxval == ['.mxrecord.io']:
-                print("# \t " + mx_results + "\tCloudflare Area 1 Email Security Host")
+                opf.write("# \t " + mx_results + "\tCloudflare Area 1 Email Security Host\n")
             elif rmxval == ['.messagelabs.com']:
-                print("# \t " + mx_results + "\tSymantec Email Security.cloud Host")
+                opf.write("# \t " + mx_results + "\tSymantec Email Security.cloud Host\n")
             else:
-                print("# \t" + mx_results + "\tUnrecognized Host")
+                opf.write("# \t" + mx_results + "\tUnrecognized Host\n")
+    # if mx records not found...
     except:
-        print("# [FAIL] MX Record Not Found.\n")
-        #opf.write("# [FAIL] MX Record Not Found.\n")
+        opf.write("# [FAIL] MX Record Not Found.\n#\n")
         pass
-
+    # try looking for spf record
     try:
         test_spf = dns.resolver.resolve(domain, 'TXT')
-        print("########################################")
-        #opf.write("########################################\n")
+        opf.write("###########################################################################################\n")
+        # look inside results, loop through w/regex to parse it out
         for spf_data in test_spf:
             spf_results = str(spf_data)
             if 'spf1' in str(spf_data):
-                print("# SPF Record Found:\n#\t", spf_data)
-                #opf.write("# SPF Record Found:\n#\t" + spf_results + "\n")
-                print("# \tSPF Details:")
+                opf.write("# SPF Record Found:\n#\t" + spf_results + "\n#\n")
+                opf.write("# \tSPF Details:\n")
                 # regex for redirects
                 try:
                     rredir = re.findall(r"(?i)[redict]{8}=(?:[a-zA-Z0-9_-](?:[a-zA-Z0-9_-]*[a-zA-Z0-9])?\.)+["
@@ -72,9 +72,9 @@ with open(outputfile, "w") as opf:
                     rredirval = re.findall(r"(?:[a-zA-Z0-9_-](?:[a-zA-Z0-9_-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:["
                                            r"a-zA-Z0-9_-]*[a-zA-Z0-9])?", str(rredir))
                     if rredir == []:
-                        print("# \t\t...Not Declared: Redirect.")
+                        opf.write("# \t\t...Not Declared: Redirect.\n")
                     else:
-                        print("# \t\tRedirects to: " + str(rredirval))
+                        opf.write("# \t\tRedirects to: " + str(rredirval) + "\n")
                 except: 
                     pass
 
@@ -85,9 +85,9 @@ with open(outputfile, "w") as opf:
                     rincval = re.findall(r"(?:[a-zA-Z0-9_-](?:[a-zA-Z0-9_-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:["
                                          r"a-zA-Z0-9_-]*[a-zA-Z0-9])?", str(rinc))
                     if rincval == []:
-                        print("# \t\t...Not Declared: Includes.")
+                        opf.write("# \t\t...Not Declared: Includes.\n")
                     else:
-                        print("# \t\tIncludes: " + str(rincval))
+                        opf.write("# \t\tIncludes: " + str(rincval) + "\n")
                 except:
                     pass
                 # regex for ipv4's??? COUNT???
@@ -96,46 +96,44 @@ with open(outputfile, "w") as opf:
 
                 # regex for other macros??? UGH!!!
                 try:
-                    rmac = re.findall(r"[%{]{2}[a-zA-Z]{1}[}]{1}", spf_results)
+                    rmac = re.findall(r"[%{]{2}[a-zA-Z][}]", spf_results)
                     if rmac == []:
-                        print("# \t\t...Not Declared: Misc Macros.")
+                        opf.write("# \t\t...Not Declared: Misc Macros.\n")
                     else:
-                        print("# \t\tMisc Macros: " + str(rmac))
+                        opf.write("# \t\tMisc Macros: " + str(rmac) + "\n")
                 except:
                     pass
 
                 # regex for all action CHAIN OF IF ELSE ELSE ELSE
                 try:
-                    rall = re.findall(r"(?i)[?+~-]{1}all\"$", spf_results)
-                    rallval = re.findall(r"[?+~-]{1}", str(rall))
+                    rall = re.findall(r"(?i)[?+~-]all\"$", spf_results)
+                    rallval = re.findall(r"[?+~-]", str(rall))
                     if rallval == ['?']:
-                        print("# \t\tAll Mechanism: " + str(rallval) + " NEUTRAL.")
+                        opf.write("# \t\tAll Mechanism: " + str(rallval) + " NEUTRAL.\n")
                     elif rallval == ['+']:
-                        print("# \t\tAll Mechanism: " + str(rallval) + " PASS.")
+                        opf.write("# \t\tAll Mechanism: " + str(rallval) + " PASS.\n")
                     elif rallval == ['~']:
-                        print("# \t\tAll Mechanism: " + str(rallval) + " SOFTFAIL.")
+                        opf.write("# \t\tAll Mechanism: " + str(rallval) + " SOFTFAIL.\n")
                     elif rallval == ['-']:
-                        print("# \t\tAll Mechanism: " + str(rallval) + " HARDFAIL.")
+                        opf.write("# \t\tAll Mechanism: " + str(rallval) + " HARDFAIL.\n")
                     else:
-                        print("# \t\t...Not Declared: All Mechanism.")
+                        opf.write("# \t\t...Not Declared: All Mechanism.\n")
                 except:
                     pass
-
+    # if no spf record found...
     except:
-        print("# [FAIL] SPF Record Not Found.")
-        #opf.write("# [FAIL] SPF Record Not Found.\n")
+        opf.write("# [FAIL] SPF Record Not Found.\n#\n")
         pass
-
+    # try looking for dmarc record
     try:
         test_dmarc = dns.resolver.resolve("_dmarc." + domain, "TXT")
-        print("########################################")
-        #opf.write("########################################\n")
+        opf.write("###########################################################################################\n")
+        # look inside results, loop through w/regex to parse it out
         for dmarc_data in test_dmarc:
             dmarc_results = str(dmarc_data)
             if "DMARC1" in str(dmarc_data):
-                print("# DMARC Record Found:\n#\t", dmarc_data)
-                #opf.write("# DMARC Record Found:\n#\t" + dmarc_results + "\n")
-                print("# \tDMARC Details:")
+                opf.write("# DMARC Record Found:\n#\t" + dmarc_results + "\n#\n")
+                opf.write("# \tDMARC Details:\n")
                 # DMARC RUA Recipient
                 try:
                     rrua = re.findall(r"[a-zA-Z][a-zA-Z][aA]=[a-zA-Z]ailto:[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.["
@@ -145,11 +143,11 @@ with open(outputfile, "w") as opf:
                                             r"?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:["
                                             r"a-zA-Z0-9-]*[a-zA-Z0-9])?", str(rrua))
                     if rruaval == []:
-                        print("# \t\t...Not Declared: Reports Aggregate Recipient (rua=<user@domain.com>).")
+                        opf.write("# \t\t...Not Declared: Reports Aggregate Recipient (rua=<user@domain.com>).\n")
                     else:
-                        print("# \t\tReports Aggregate Recipient: " + str(rruaval))
+                        opf.write("# \t\tReports Aggregate Recipient: " + str(rruaval) + "\n")
                 except:
-                    print("# \tReports Aggregate Recipient Not Declared.")
+                    opf.write("# \tReports Aggregate Recipient Not Declared.\n")
                 # DMARC RUF Recipient
                 try:
                     rruf = re.findall(r"[a-zA-Z][a-zA-Z][fF]=[a-zA-Z]ailto:[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.["
@@ -159,65 +157,64 @@ with open(outputfile, "w") as opf:
                                             r"?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:["
                                             r"a-zA-Z0-9-]*[a-zA-Z0-9])?", str(rruf))
                     if rrufval == []:
-                        print("# \t\t...Not Declared: Reports Forensic Recipient (ruf=<user@domain.com>).")
+                        opf.write("# \t\t...Not Declared: Reports Forensic Recipient (ruf=<user@domain.com>).\n")
                     else:
-                        print("# \t\tReports Forensic Recipient: " + str(rrufval))
+                        opf.write("# \t\tReports Forensic Recipient: " + str(rrufval) + "\n")
                 except:
-                    print("# \tReports Forensic Recipient Not Declared.")
+                    opf.write("# \tReports Forensic Recipient Not Declared.\n")
                 # DMARC DKIM Alignment
                 try:
-                    radkim = re.findall(r"(?i)[adkim]{5}=[sr]{1};", dmarc_results)
+                    radkim = re.findall(r"(?i)[adkim]{5}=[sr];", dmarc_results)
                     radkimval = re.findall(r"[sS,rR]", str(radkim))
                     if radkimval == []:
-                        print("# \t\t...Not Declared: DKIM Alignment (adkim=<s|r>).")
+                        opf.write("# \t\t...Not Declared: DKIM Alignment (adkim=<s|r>).\n")
                     else:
-                        print("# \t\tDKIM Alignment Strict/Relaxed: " + str(radkimval))
+                        opf.write("# \t\tDKIM Alignment Strict/Relaxed: " + str(radkimval) + "\n")
                 except:
-                    print("# \tDKIM Alignment Not Declared.")
+                    opf.write("# \tDKIM Alignment Not Declared.\n")
                 # DMARC SPF Alignment
                 try:
-                    raspf = re.findall(r"(?i)[aspf]{4}=[sr]{1};", dmarc_results)
+                    raspf = re.findall(r"(?i)[aspf]{4}=[sr];", dmarc_results)
                     raspfval = re.findall(r"[sS,rR]", str(raspf))
                     if raspfval == []:
-                        print("# \t\t...Not Declared: SPF Alignment (aspf=<s|r>).")
+                        opf.write("# \t\t...Not Declared: SPF Alignment (aspf=<s|r>).\n")
                     else:
-                        print("# \t\tSPF Alignment Strict/Relaxed: " + str(raspfval))
+                        opf.write("# \t\tSPF Alignment Strict/Relaxed: " + str(raspfval) + "\n")
                 except:
-                    print("# \tSPF Alignment Not Declared.")
+                    opf.write("# \tSPF Alignment Not Declared.\n")
                 # DMARC Percentage Filtered
                 try:
                     rpct = re.findall(r"(?i)[pct]{3}=[0-9]{2,3}", dmarc_results)
                     rpctval = re.findall(r"[0-9]{2,3}", str(rpct))
                     if rpctval == []:
-                        print("# \t\t...Not Declared: Percentage Msgs Filtered (pct=<0-100>).")
+                        opf.write("# \t\t...Not Declared: Percentage Msgs Filtered (pct=<0-100>).\n")
                     else:
-                        print("# \t\tPercentage Msgs Filtered: " + str(rpctval))
+                        opf.write("# \t\tPercentage Msgs Filtered: " + str(rpctval) + "\n")
                 except:
-                    print("# \tPercentage Msgs Filtered Not Declared.")
+                    opf.write("# \tPercentage Msgs Filtered Not Declared.\n")
                 # DMARC Subdomain Policy Action
                 try:
                     rsp = re.findall(r"(?i)[sp]{2}=[a-zA-Z]*;", dmarc_results)
                     rspval = re.findall(r"[a-zA-Z]{4,10}", str(rsp))
                     if rspval == []:
-                        print("# \t\t...Not Declared: Subdomain Policy Action (sp=<none|reject|quarantine>).")
+                        opf.write("# \t\t...Not Declared: Subdomain Policy Action (sp=<none|reject|quarantine>).\n")
                     else:
-                        print("# \t\tSubdomain Policy Action: " + str(rspval))
+                        opf.write("# \t\tSubdomain Policy Action: " + str(rspval) + "\n")
                 except:
-                    print(" \tSubdomain Policy Action Not Declared.")
+                    opf.write(" \tSubdomain Policy Action Not Declared.\n")
                 # DMARC Policy Action
                 try:
-                    rp = re.findall(r"(?i)[p]{1}=[a-zA-Z]*;", dmarc_results)
+                    rp = re.findall(r"(?i)[p]=[a-zA-Z]*;", dmarc_results)
                     rpval = re.findall(r"[a-zA-Z]{4,10}", str(rp))
                     if rpval == []:
-                        print("# \t\t...Uh Oh! Not Declared: Policy Action (p=<none|reject|quarantine>).")
+                        opf.write("# \t\t...Uh Oh! Not Declared: Policy Action (p=<none|reject|quarantine>).\n")
                     else:
-                        print("# \t\tPolicy Action: " + str(rpval))
+                        opf.write("# \t\tPolicy Action: " + str(rpval) + "\n")
                 except:
-                    print(" \tPolicy Action Not Declared.")
-
+                    opf.write(" \tPolicy Action Not Declared.\n")
+    # if no dmarc record found...
     except:
-        print("# [FAIL] DMARC Record Not Found.")
-        #opf.write("# [FAIL] DMARC Record Not Found.\n")
+        opf.write("# [FAIL] DMARC Record Not Found.\n#\n")
         pass
 
 opf.close()
