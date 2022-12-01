@@ -3,26 +3,31 @@
 **TL;DR**  
 I often do an nslookup and check MXToolbox for some info.  
 So why not make a python script amiright  
-______________________________________________________________
+______________________________________________________________  
+
 **Prereq's**  
 Python3  
 dnspython python package (pip install dnspython)
-______________________________________________________________
+______________________________________________________________  
+
 **Progress Report**  
 Currently accepts input for a domain name, runs MX, SPF, DMARC checks and writes to a file named <domain>.txt, including minor details such as hardfail, softfail, p=none, etc. Still working on functionality while bored.<br>
-  Removed writing contents to file, need to clean up new functionality first.<br>
+  Added file output to domain.com.txt.<br>
   Added a mini digest of cloud email gateway hosts for mx host identification.<br>
-  Added SPF details parsing. Needs cleanup for readability.<br>
+  Added SPF details parsing.<br>
 Give it a try. If you like it, steal it and make it your own. 
-______________________________________________________________
+______________________________________________________________  
+  
 **Some functionality ideas:**  
 * check SPF final action to gauge SPF health - DONE  
 * check DMARC percentage and policy action to gauge DMARC health - DONE 
 * check MX Hostnames against known mail providers (Google, Cisco, Outlook, Proofpoint, etc) - DONE  
 * save results to a file - DONE  
 * check SPF hostnames against MX hostnames to gauge SPF health - Abandoned  
-* read csv list of domains, output multiple results files - Pending  
+* logging enabled for troubleshooting - DONE
 * argparse for accepting cli arguments - Pending  
+* read csv list of domains, output multiple results files - Pending  
+
 
 
 
