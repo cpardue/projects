@@ -12,3 +12,4 @@ not yet started.
 * run in same DIR as config  
 * reads through config and generates file structure from config contents  
 * file structure mimics web gui layout (mail policies, security features, networking, sys admin)  
+* file structure should be VLN/menu_tab_name/sub_menu_name/item_name_trait.txt  
