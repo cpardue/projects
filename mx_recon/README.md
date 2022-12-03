@@ -17,6 +17,7 @@ usage:
 2. enter a domain name (example.com) at the prompt
 3. press any key to exit
 your example.com.txt report is now ready in the script's folder  
+
 ![instructions](https://github.com/cpardue/python3/blob/main/mx_recon/instructions.png?raw=true)
 ______________________________________________________________  
 
