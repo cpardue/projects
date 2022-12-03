@@ -3,6 +3,7 @@
 **TL;DR**  
 I often do an nslookup and check MXToolbox for some info.  
 So why not make a python script amiright  
+it prints the mx, spf, and dmarc records but also organizes details for tags that are and are not declared, outputs into a txt file. 
 ______________________________________________________________  
 
 **instructions**  
