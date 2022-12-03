@@ -6,15 +6,17 @@ So why not make a python script amiright
 ______________________________________________________________  
 
 **instructions**  
+
 initial setup:  
 1. download the files.  
 2. change directory to download location.
 3. run 'pip install -r requirements.txt' to install dependencies. 
+
 usage:  
-1. run the script  
-2. enter a domain name (example.com) at the prompt
-3. press any key to exit
-4. your example.com.txt report is now ready in the script's folder  
+6. run the script  
+7. enter a domain name (example.com) at the prompt
+8. press any key to exit
+9. your example.com.txt report is now ready in the script's folder  
 ______________________________________________________________  
 
 **Progress Report**  
