@@ -20,7 +20,7 @@ your example.com.txt report is now ready in the script's folder
 ______________________________________________________________  
 
 **Progress Report**  
-Currently accepts input for a domain name, runs MX, SPF, DMARC checks and writes to a file named <domain>.txt, including minor details such as hardfail, softfail, p=none, etc. Working on finishing it so I can move on with clear conscience.<br>
+Currently accepts input for a domain name, runs MX, SPF, DMARC checks and writes to a file named <domain>.txt, including minor details such as hardfail, softfail, p=none, etc. <br>
   Added file output to domain.com.txt.<br>
   Added a mini digest of cloud email gateway hosts for mx host identification.<br>
   Added SPF details parsing.<br>
