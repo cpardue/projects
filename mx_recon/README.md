@@ -5,10 +5,16 @@ I often do an nslookup and check MXToolbox for some info.
 So why not make a python script amiright  
 ______________________________________________________________  
 
-**Prereq's**  
-Python3  
-dnspython python package (pip install dnspython)
-re python package (pip install re? might be native)
+**instructions**  
+initial setup:  
+1. download the files.  
+2. change directory to download location.
+3. run 'pip install -r requirements.txt' to install dependencies. 
+usage:  
+1. run the script  
+2. enter a domain name (example.com) at the prompt
+3. press any key to exit
+4. your example.com.txt report is now ready in the script's folder  
 ______________________________________________________________  
 
 **Progress Report**  
