@@ -24,7 +24,9 @@ Currently accepts input for a domain name, runs MX, SPF, DMARC checks and writes
   Added file output to domain.com.txt.<br>
   Added a mini digest of cloud email gateway hosts for mx host identification.<br>
   Added SPF details parsing.<br>
-  Added logging for info and debug.<br>
+  Added DMARC details parsing.<br>
+  Added console logging for info and debug.<br>
+  
 Give it a try. If you like it, steal it and make it your own. 
 ______________________________________________________________  
   
