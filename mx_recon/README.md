@@ -8,13 +8,15 @@ ______________________________________________________________
 **Prereq's**  
 Python3  
 dnspython python package (pip install dnspython)
+re python package (pip install re? might be native)
 ______________________________________________________________  
 
 **Progress Report**  
-Currently accepts input for a domain name, runs MX, SPF, DMARC checks and writes to a file named <domain>.txt, including minor details such as hardfail, softfail, p=none, etc. Still working on functionality while bored.<br>
+Currently accepts input for a domain name, runs MX, SPF, DMARC checks and writes to a file named <domain>.txt, including minor details such as hardfail, softfail, p=none, etc. Working on finishing it so I can move on with clear conscience.<br>
   Added file output to domain.com.txt.<br>
   Added a mini digest of cloud email gateway hosts for mx host identification.<br>
   Added SPF details parsing.<br>
+  Added logging for info and debug.<br>
 Give it a try. If you like it, steal it and make it your own. 
 ______________________________________________________________  
   
