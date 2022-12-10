@@ -1,32 +1,35 @@
-""" version 0.1.7, by Chris Pardue, see chris-pardue.com
+""" version 0.1.8, by Chris Pardue, see chris-pardue.com
 or github.com/cpardue for more sketchy python scripts"""
 import dns.resolver
 import re
 import logging
 
 # logging setup
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(filename='mx_recon_log.txt', filemode='w', format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S', level=logging.DEBUG)
 # logging.debug('a debug log')
 # logging.info('an info log')
 # logging.warning('a warning log')
 # logging.error('an error log')
 
-version = "v0.1.7"
+version = "v0.1.8"
 
 logging.debug("waiting on user input for domain to check...")
 domain = input("Enter a Domain to check: ")
 logging.debug("user gave input...")
 # domain = "test.com"
 logging.info("domain = " + domain)
+print("Running script on " + domain + "...")
 # name the output file
 outputfile = domain + ".txt"
 logging.info("filename = " + outputfile)
+print("Created file " + outputfile + "...")
 # create & open the output file and...
 with open(outputfile, "w") as opf:
     logging.debug("opened " + outputfile + " to write to...")
     # try looking for MX records
     try:
         logging.debug("trying to resolve MX records for " + domain + "...")
+        print("Resolving MX Records...")
         test_mx = dns.resolver.resolve(domain, "MX")
         logging.debug(test_mx)
         opf.write("\t#################################\n")
@@ -36,9 +39,12 @@ with open(outputfile, "w") as opf:
         opf.write("\t#        buy me a coffee        #\n")
         opf.write("\t#################################\n\n")
         opf.write("MX Records Found:\n\t(Priority, Hostname, Suspected Service)\n")
+        print("MX Records Found!")
         # look inside results, loop through w/regex to parse it out
         for mx_data in test_mx:
             logging.debug("checking MX record results for details...")
+            print("Pulling data from MX Records...")
+            print("Writing results to " + outputfile + "...")
             mx_results = str(mx_data)
             logging.info(str(mx_data))
             # parse out suspected email gateway
@@ -52,8 +58,8 @@ with open(outputfile, "w") as opf:
                 opf.write("\t " + mx_results + "\tMimecast Cloud Email Security Host\n")
                 logging.info(mx_results + "\tMimecast Cloud Email Security Host")
             elif rmxval == ['.zixmail.net']:
-                opf.write("\t " + mx_results + "\tPossibly Zixmail Host\n")
-                logging.info(mx_results + "\tPossibly Zixmail Host")
+                opf.write("\t " + mx_results + "\tZixmail Email Host\n")
+                logging.info(mx_results + "\tZixmail Email Host")
             elif rmxval == ['.google.com']:
                 opf.write("\t " + mx_results + "\tGoogle Workspaces Host\n")
                 logging.info(mx_results + "\tGoogle Workspaces Host")
@@ -61,8 +67,8 @@ with open(outputfile, "w") as opf:
                 opf.write("\t " + mx_results + "\tO365 Email Host\n")
                 logging.info(mx_results + "\tO365 Email Host")
             elif rmxval == ['.onmicrosoft.com']:
-                opf.write("\t " + mx_results + "\tPossibly O365 Email Host\n")
-                logging.info(mx_results + "\tPossibly O365 Email Host")
+                opf.write("\t " + mx_results + "\tExchange Online Email Host\n")
+                logging.info(mx_results + "\tExchange Online Email Host")
             elif rmxval == ['.zoho.com']:
                 opf.write("\t " + mx_results + "\tZoho Cloud Email Host\n")
                 logging.info(mx_results + "\tZoho Cloud Email Host")
@@ -95,10 +101,12 @@ with open(outputfile, "w") as opf:
         opf.write("[FAIL] MX Record Not Found.\n\n")
         logging.info("[FAIL] MX Record Not Found.")
         logging.warning("MX Record lookup has flat out FAILED.")
+        print("Something went wrong, could not resolve MX Records!")
         pass
     # try looking for spf record
     try:
         logging.debug("trying to resolve TXT records for " + domain + "...")
+        print("Resolving TXT Records...")
         test_spf = dns.resolver.resolve(domain, 'TXT')
         logging.debug(test_spf)
         opf.write("\n")
@@ -108,9 +116,12 @@ with open(outputfile, "w") as opf:
             spf_results = str(spf_data)
             if 'spf1' in str(spf_data):
                 logging.debug("'spf1' found...")
+                print("SPF Record found!")
                 opf.write("SPF Record Found:\n\t(Version, Allowed Hosts, All Else)\n\t" + spf_results + "\n")
                 logging.info(spf_results)
                 opf.write("\tSPF Details:\n")
+                print("Pulling data from SPF Record...")
+                print("Writing results to " + outputfile + "...")
                 # regex for redirects
                 try:
                     logging.debug("checking SPF record results for redirects...")
@@ -186,6 +197,7 @@ with open(outputfile, "w") as opf:
         opf.write("[FAIL] SPF Record Not Found.\n\n")
         logging.info("[FAIL] SPF Record Not Found.")
         logging.warning("SPF Record lookup has flat out FAILED.")
+        print("Something went wrong, could not resolve SPF Record!")
         pass
     # try looking for dmarc record
     try:
@@ -199,13 +211,16 @@ with open(outputfile, "w") as opf:
             dmarc_results = str(dmarc_data)
             if "DMARC1" in str(dmarc_data):
                 logging.debug("'DMARC1' found...")
+                print("DMARC Record Found!")
+                print("Pulling data from DMARC Record...")
+                print("Writing results to " + outputfile + "...")
                 opf.write("DMARC Record Found:\n\t(Version, Tags)\n\t" + dmarc_results + "\n")
                 logging.info(dmarc_results)
                 opf.write("\tDMARC Details:\n")
                 # DMARC RUA Recipient
                 try:
                     logging.debug("checking DMARC record results for rua...")
-                    rrua = re.findall(r"[a-zA-Z][a-zA-Z][aA]=[a-zA-Z]ailto:[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.["
+                    rrua = re.findall(r"(?i)[rua]{3}=[mailto]{6}:[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.["
                                       r"a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+["
                                       r"a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?", dmarc_results)
                     rruaval = re.findall(r"[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@("
@@ -223,7 +238,7 @@ with open(outputfile, "w") as opf:
                 # DMARC RUF Recipient
                 try:
                     logging.debug("checking DMARC record results for ruf...")
-                    rruf = re.findall(r"[a-zA-Z][a-zA-Z][fF]=[a-zA-Z]ailto:[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.["
+                    rruf = re.findall(r"(?i)[ruf]{3}=[mailto]{6}:[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.["
                                       r"a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+["
                                       r"a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?", dmarc_results)
                     rrufval = re.findall(r"[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@("
@@ -313,11 +328,16 @@ with open(outputfile, "w") as opf:
         opf.write("[FAIL] DMARC Record Not Found.\n\n")
         logging.info("[FAIL] DMARC Record Not Found.")
         logging.warning("DMARC Record lookup has flat out FAILED.")
+        print("Something went wrong, could not resolve DMARC Record!")
         pass
 
+print("Finishing up " + outputfile + "...")
 opf.close()
 logging.debug("closing " + outputfile + "...")
+print(outputfile + " has been saved to the mx_recon.py directory.")
+print("[INSTRUCTION] Please review " + outputfile + " to see the results of this script!")
 logging.info("please check directory for report " + outputfile + " to view txt file results.")
 logging.debug("waiting for user input to exit...")
+print("Script has completed.")
 input("\nPress enter to exit ")
 logging.debug("user input accepted. exiting...")
